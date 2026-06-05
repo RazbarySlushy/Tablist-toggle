@@ -2,7 +2,11 @@ package de.nauren.tablisttoggle.mixin;
 
 import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import net.minecraft.client.gui.components.OptionsList;
+//? >= 1.21 {
 import net.minecraft.client.gui.screens.options.OptionsSubScreen;
+//?} else {
+/*import net.minecraft.client.gui.screens.OptionsSubScreen;
+*///?}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 

@@ -63,6 +63,8 @@ repositories {
 	mavenCentral()
 	strictMaven("https://maven.terraformersmc.com/", "com.terraformersmc") { name = "TerraformersMC" }
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+	// Hosts eu.pb4:placeholder-api, a dev-runtime transitive of older ModMenu builds.
+	strictMaven("https://maven.nucleoid.xyz/", "eu.pb4") { name = "Nucleoid" }
 }
 
 configurations.all {

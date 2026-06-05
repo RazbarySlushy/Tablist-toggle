@@ -18,14 +18,20 @@ Current matrix (Forge is intentionally dropped in favour of NeoForge):
 
 | Minecraft | Fabric | NeoForge |
 |-----------|:------:|:--------:|
+| 1.20.2    |   ✅   |    —     |
+| 1.20.4    |   ✅   |    —     |
+| 1.20.6    |   ✅   |    ✅    |
 | 1.21.1    |   ✅   |    ✅    |
 | 1.21.7    |   ✅   |    ✅    |
 | 26.1.2    |   ✅   |    ✅    |
 
-> Roadmap: backport toward older "major" versions (1.20.x, 1.18.x, 1.16.x, …) and add
-> Fabric for versions that predate NeoForge. The Controls-screen option uses the
-> `OptionInstance` API (1.20.2+); older versions will need a Stonecutter-guarded variant
-> (the pre-1.20.2 `Option`/`CycleOption` system).
+NeoForge is offered from 1.20.6 up (its 1.20.2/1.20.4 line predates the API the modern
+NeoForge MDG plugin builds against, so those two are Fabric-only).
+
+> Roadmap: continue backporting toward older "major" versions (1.20.1, 1.19.x, 1.18.x,
+> 1.16.x, …, 1.8.8). The Controls-screen option uses the `OptionInstance` API; pre-1.20.2
+> lacks `ControlsScreen#addOptions`, and pre-~1.20 lacks `OptionInstance` entirely (the old
+> `Option`/`CycleOption` system), so those eras need Stonecutter-guarded variants.
 
 ## Building
 

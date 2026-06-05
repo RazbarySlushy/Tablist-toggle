@@ -22,6 +22,21 @@ url = "https://github.com/PalmarHealer"
 [fabric]
 deps.fabric-loader = "0.19.2"
 
+[fabric."1.20.2"]
+deps.minecraft = "1.20.2"
+deps.fabric-api = "0.91.6+1.20.2"
+deps.modmenu = "8.0.1"
+
+[fabric."1.20.4"]
+deps.minecraft = "1.20.4"
+deps.fabric-api = "0.97.3+1.20.4"
+deps.modmenu = "9.2.0"
+
+[fabric."1.20.6"]
+deps.minecraft = "1.20.6"
+deps.fabric-api = "0.100.8+1.20.6"
+deps.modmenu = "10.0.0"
+
 [fabric."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.fabric-api = "0.116.7+1.21.1"
@@ -40,6 +55,10 @@ deps.modmenu = "18.0.0-alpha.8"
 publish.additionalVersions = ["26.1.1", "26.1"]
 
 [neoforge]
+
+[neoforge."1.20.6"]
+deps.minecraft = "1.20.6"
+deps.neoforge = "20.6.139"
 
 [neoforge."1.21.1"]
 deps.minecraft = "1.21.1"
