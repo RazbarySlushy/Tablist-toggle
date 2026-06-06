@@ -1,7 +1,7 @@
 mod.id = "tablisttoggle"
 mod.name = "Tablist Toggle"
 mod.group = "de.nauren"
-mod.version = "1.0.0"
+mod.version = "1.0.1"
 mod.channel_tag = ""
 mod.description = "Adds a Hold/Toggle switch for the player list (tab list) in the Controls settings."
 mod.authors = ["PalmarHealer"]
