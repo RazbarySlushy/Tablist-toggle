@@ -17,8 +17,8 @@ creatures who need to see who's online **ALL THE TIME**.)
 
 ## What it does
 
-Adds a single option to the **Controls** settings screen, right next to the vanilla
-*Toggle Sprint* / *Toggle Sneak* options:
+You'll find the setting under **Options → Controls** (the same page as *Toggle Sprint* /
+*Toggle Sneak*), shown as a single button:
 
 > **Tablist: Hold / Toggle**
 
