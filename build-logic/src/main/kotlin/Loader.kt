@@ -55,7 +55,7 @@ sealed class Loader(val id: String) {
 					"main" to listOf("${ctx.modGroup}.${ctx.modId}.platform.fabric.FabricEntrypoint"),
 					"client" to listOf("${ctx.modGroup}.${ctx.modId}.platform.fabric.FabricClientEntrypoint")
 				),
-				mixins = listOf("${ctx.modId}.mixins.json"),
+				mixins = ctx.mixinConfigs,
 				depends = ctx.extension.dependencies.required.associate { it.modid.get() to it.fabricLikeVersionRange.get() },
 				recommends = ctx.extension.dependencies.optional.associate { it.modid.get() to it.fabricLikeVersionRange.get() },
 				breaks = ctx.extension.dependencies.incompatible.associate { it.modid.get() to it.fabricLikeVersionRange.get() },
@@ -122,7 +122,7 @@ sealed class Loader(val id: String) {
 						credits = "${ctx.authors.joinToString(", ")} Contributors: ${ctx.contributors.joinToString(", ")}",
 						description = ctx.description
 					)
-				), dependencies = mapOf(ctx.modId to forgeDeps), mixins = listOf(ForgeMixin("${ctx.modId}.mixins.json"))
+				), dependencies = mapOf(ctx.modId to forgeDeps), mixins = ctx.mixinConfigs.map { ForgeMixin(it) }
 			)
 
 			return TOML.encodeToString(manifest)

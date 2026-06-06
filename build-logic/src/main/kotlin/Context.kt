@@ -22,6 +22,15 @@ class Context(
 	}
 
 	val modId: String by lazy { require("mod.id") }
+
+	// The base mixin config applies everywhere; the "modern" one (1.21+ only mixins, e.g. the
+	// OptionsSubScreen accessor) is included only where those targets exist.
+	val mixinConfigs: List<String> by lazy {
+		val configs = mutableListOf("$modId.mixins.json")
+		if (stonecutter.eval(currentMcVersion, ">=1.21")) configs += "$modId.modern.mixins.json"
+		configs
+	}
+
 	val modName: String by lazy { require("mod.name") }
 	val modGroup: String by lazy { require("mod.group") }
 	val modVersion: String by lazy { require("mod.version") }
