@@ -41,7 +41,9 @@ sealed class Loader(val id: String) {
 				custom = buildJsonObject {
 					putJsonObject("modmenu") {
 						putJsonObject("links") {
-							put("modmenu.discord", ctx.discordUrl)
+							if (ctx.discordUrl.isNotBlank()) {
+								put("modmenu.discord", ctx.discordUrl)
+							}
 						}
 					}
 				},
