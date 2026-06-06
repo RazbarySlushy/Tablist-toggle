@@ -5,6 +5,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
+import java.util.logging.Level;
 
 /**
  * Tiny properties-backed config. Only the {@link Mode} is persisted; it survives
@@ -40,7 +41,7 @@ public final class TablistToggleConfig {
 				save();
 			}
 		} catch (Exception e) {
-			TablistToggle.LOGGER.warn("[{}] Could not read config, using defaults", TablistToggle.MOD_ID, e);
+			TablistToggle.LOGGER.log(Level.WARNING, "Could not read config, using defaults", e);
 		}
 	}
 
@@ -54,7 +55,7 @@ public final class TablistToggleConfig {
 				props.store(writer, "Tablist Toggle settings");
 			}
 		} catch (Exception e) {
-			TablistToggle.LOGGER.warn("[{}] Could not write config", TablistToggle.MOD_ID, e);
+			TablistToggle.LOGGER.log(Level.WARNING, "Could not write config", e);
 		}
 	}
 }
