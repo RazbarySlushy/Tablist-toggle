@@ -22,13 +22,11 @@ platform {
 		required("minecraft") {
 			fabricLikeVersionRange = prop("deps.minecraft")
 		}
-		required("fabric-api") {
-			slug("fabric-api")
-			fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
-		}
 		required("fabricloader") {
 			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
 		}
+		// Fabric API is only used at dev time (datagen plumbing / Mod Menu); the mod itself
+		// has no runtime dependency on it, so it is intentionally not listed as required.
 		optional("modmenu") {}
 	}
 }
