@@ -13,15 +13,14 @@ public final class TablistToggleOptions {
 	}
 
 	public static OptionInstance<Boolean> modeOption() {
+		// The button widget already renders "<caption>: <value>", so the value stringifier
+		// must return only the value label (else the caption is shown twice).
 		return new OptionInstance<>(
 				"tablisttoggle.option.mode",
 				OptionInstance.noTooltip(),
-				(caption, value) -> Component.translatable(
-						"options.generic_value",
-						caption,
-						Component.translatable(value
-								? "tablisttoggle.option.mode.toggle"
-								: "tablisttoggle.option.mode.held")),
+				(caption, value) -> Component.translatable(value
+						? "tablisttoggle.option.mode.toggle"
+						: "tablisttoggle.option.mode.held"),
 				OptionInstance.BOOLEAN_VALUES,
 				TablistToggleState.mode() == Mode.TOGGLE,
 				value -> TablistToggleState.setMode(value ? Mode.TOGGLE : Mode.HELD));
