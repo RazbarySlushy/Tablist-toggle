@@ -40,19 +40,14 @@ Built from one source tree, so every version below ships the exact same feature.
 
 | Minecraft | Fabric | NeoForge |
 |-----------|:------:|:--------:|
-| 1.19.2    |   ✅    |    —     |
-| 1.19.4    |   ✅    |    —     |
-| 1.20.1    |   ✅    |    —     |
-| 1.20.2    |   ✅    |    —     |
-| 1.20.4    |   ✅    |    —     |
-| 1.20.6    |   ✅    |    ✅     |
-| 1.21.1    |   ✅    |    ✅     |
-| 1.21.7    |   ✅    |    ✅     |
-| 26.1.2    |   ✅    |    ✅     |
+| 1.20.6    |   ✅    |    ✅    |
+| 1.21.1    |   ✅    |    ✅    |
+| 1.21.7    |   ✅    |    ✅    |
+| 26.1.2    |   ✅    |    ✅    |
 
-NeoForge is offered from 1.20.6 up (it didn't exist for the earlier versions, and its
-1.20.2/1.20.4 line predates the build tooling). Older versions (down to 1.16.5) are being
-backported.
+1.20.6 is the oldest supported version: from there up the Controls screen exposes a clean
+options list to hook into, whereas 1.20.4 and below build the options as individual buttons
+(no list), which makes a tidy injection impractical.
 
 ## Usage
 
