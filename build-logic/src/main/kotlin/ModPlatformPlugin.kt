@@ -1,9 +1,9 @@
 @file:Suppress("unused", "DuplicatedCode")
 
-import dev.kikugie.fletching_table.extension.FletchingTableExtension
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import dev.kikugie.stonecutter.build.StonecutterBuildExtension
 import org.gradle.api.DefaultTask
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -15,6 +15,7 @@ import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
 import org.gradle.jvm.tasks.Jar
 import org.gradle.jvm.toolchain.JavaLanguageVersion
@@ -65,7 +66,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			sourcesJarTask.convention(inferredLoader.sourcesJarTask)
 		}
 
-		listOf("org.jetbrains.kotlin.jvm", "com.google.devtools.ksp", "dev.kikugie.fletching-table").forEach {
+		listOf("org.jetbrains.kotlin.jvm", "com.google.devtools.ksp").forEach {
 			apply(
 				plugin = it
 			)
@@ -94,7 +95,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			}
 		}
 
-		configureFletchingTable(ctx)
 		registerGenerateManifestTask(ctx)
 		configureJarTask(ctx)
 		configureIdea()
@@ -110,13 +110,24 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	}
 
 	private fun Project.configureJava(ctx: Context) {
+		val target = ctx.javaVersion.majorVersion.toInt()
+		val daemon = JavaVersion.current().majorVersion.toInt()
 		extensions.configure<JavaPluginExtension>("java") {
 			withSourcesJar()
 			withJavadocJar()
-			// Use a toolchain so each Minecraft version compiles with the JDK it requires
-			// (e.g. MC 26.x needs Java 25). Missing JDKs are auto-provisioned via foojay;
-			// versions matching the running daemon JVM reuse it without a download.
-			toolchain.languageVersion.set(JavaLanguageVersion.of(ctx.javaVersion.majorVersion))
+			if (target > daemon) {
+				// Needs a newer JDK than the daemon (e.g. MC 26.x → Java 25): provision a
+				// toolchain via foojay. (foojay also resolves it without a download if present.)
+				toolchain.languageVersion.set(JavaLanguageVersion.of(target))
+			}
+		}
+		if (target <= daemon) {
+			// Old MC versions (Java 8/16/17) build on the daemon JDK but emit bytecode for
+			// their release. This keeps Java-17-only build tooling (fletching-table/KSP)
+			// resolvable, which a Java-8 toolchain classpath would otherwise reject.
+			tasks.withType(JavaCompile::class.java).configureEach {
+				options.release.set(target)
+			}
 		}
 	}
 
@@ -163,13 +174,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 				isDownloadJavadoc = true
 				isDownloadSources = true
 			}
-		}
-	}
-
-	private fun Project.configureFletchingTable(ctx: Context) {
-		extensions.configure<FletchingTableExtension> {
-			mixins.create("main") { mixin("default", "${ctx.modId}.mixins.json") }
-			j52j.register("main") { extension("json", "**/*.json5") }
 		}
 	}
 

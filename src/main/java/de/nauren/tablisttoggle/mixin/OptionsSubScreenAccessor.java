@@ -1,6 +1,5 @@
 package de.nauren.tablisttoggle.mixin;
 
-import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import net.minecraft.client.gui.components.OptionsList;
 //? >= 1.21 {
 import net.minecraft.client.gui.screens.options.OptionsSubScreen;
@@ -16,7 +15,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
  * accessor on the declaring class does.
  */
 @Mixin(OptionsSubScreen.class)
-@MixinEnvironment(type = MixinEnvironment.Env.CLIENT)
 public interface OptionsSubScreenAccessor {
 
 	@Accessor("list")

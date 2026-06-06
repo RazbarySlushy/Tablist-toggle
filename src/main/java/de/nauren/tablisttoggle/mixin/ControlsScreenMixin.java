@@ -1,7 +1,6 @@
 package de.nauren.tablisttoggle.mixin;
 
 import de.nauren.tablisttoggle.TablistToggleOptions;
-import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.OptionsList;
 //? >= 1.21 {
@@ -20,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * fetched via {@link OptionsSubScreenAccessor} rather than a {@code @Shadow}.
  */
 @Mixin(ControlsScreen.class)
-@MixinEnvironment(type = MixinEnvironment.Env.CLIENT)
 public abstract class ControlsScreenMixin {
 
 	@Inject(method = "addOptions", at = @At("TAIL"))
