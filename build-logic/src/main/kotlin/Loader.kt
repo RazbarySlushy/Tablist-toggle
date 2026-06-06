@@ -73,6 +73,10 @@ sealed class Loader(val id: String) {
 		override val jarTask = "remapJar"
 		override val sourcesJarTask = "remapSourcesJar"
 		override val modManifestPath = "fabric.mod.json"
+
+		// Pre-26 Fabric loads mod resources without a pack.mcmeta; shipping one with a
+		// fixed pack_format would break the pre-1.20.2 versions, so exclude it here.
+		override val excludedResources = super.excludedResources + "pack.mcmeta"
 	}
 
 	sealed class ForgeLike(id: String) : Loader(id) {
