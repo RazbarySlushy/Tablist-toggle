@@ -1,6 +1,10 @@
 {
 	"pack": {
 		"pack_format": 15,
-		"description": "stonecutter-mod-template Resources"
+		"description": "Tablist Toggle",
+		"supported_formats": {
+			"min_inclusive": 0,
+			"max_inclusive": 9999
+		}
 	}
 }
