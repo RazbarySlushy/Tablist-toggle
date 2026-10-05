@@ -44,6 +44,7 @@ Built from one source tree, so every version below ships the exact same feature.
 | 1.21.1    |   ✅    |    ✅    |
 | 1.21.7    |   ✅    |    ✅    |
 | 26.1.2    |   ✅    |    ✅    |
+| 26.2      |   ✅    |          |
 
 1.20.6 is the oldest supported version: from there up the Controls screen exposes a clean
 options list to hook into, whereas 1.20.4 and below build the options as individual buttons
@@ -70,7 +71,8 @@ Gradle/Stonecutter must run on **JDK 21+** (MC 26.x auto-provisions JDK 25 via a
           ":1.20.6-fabric:build" ":1.20.6-neoforge:build" \
           ":1.21.1-fabric:build" ":1.21.1-neoforge:build" \
           ":1.21.7-fabric:build" ":1.21.7-neoforge:build" \
-          ":26.1.2-fabric:build" ":26.1.2-neoforge:build"
+          ":26.1.2-fabric:build" ":26.1.2-neoforge:build" \
+          ":26.2-fabric:build"
 ```
 
 Jars land in `versions/<version>-<loader>/build/libs/`. The project uses

@@ -42,7 +42,12 @@ public abstract class KeyMappingMixin {
 			return;
 		}
 		Minecraft mc = Minecraft.getInstance();
+		// 26.2 moved the open screen off Minecraft onto Gui.
+		//? >= 26.2 {
+		/*if (mc == null || mc.options == null || mc.gui.screen() != null) {
+		*///?} else {
 		if (mc == null || mc.options == null || mc.screen != null) {
+		//?}
 			return;
 		}
 		InputConstants.Key bound = ((KeyMappingAccessor) (Object) mc.options.keyPlayerList).tablisttoggle$getBoundKey();
